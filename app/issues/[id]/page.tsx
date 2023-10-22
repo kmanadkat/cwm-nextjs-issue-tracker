@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, Flex, Heading, Text } from '@radix-ui/themes';
+import { Box, Card, Flex, Heading, Text } from '@radix-ui/themes';
 import ReactMarkdown from 'react-markdown';
 import { notFound } from 'next/navigation';
+import delay from 'delay';
 import IssueStatusBadge from '@/app/components/IssueStatusBadge';
 
 import prisma from '@/prisma/client';
@@ -20,8 +21,11 @@ const IssueDetailPage = async ({ params }: Props) => {
 		notFound();
 	}
 
+	// Simulate Delay
+	await delay(2000);
+
 	return (
-		<div>
+		<Box className='max-w-xl'>
 			<Heading>{issue.title}</Heading>
 			<Flex gap='3' my='3'>
 				<IssueStatusBadge status={issue.status} />
@@ -30,7 +34,7 @@ const IssueDetailPage = async ({ params }: Props) => {
 			<Card className='mt-8'>
 				<ReactMarkdown className='prose'>{issue.description}</ReactMarkdown>
 			</Card>
-		</div>
+		</Box>
 	);
 };
 
