@@ -1,15 +1,16 @@
-import Link from 'next/link';
+'use client';
+import { useRouter } from 'next/navigation';
 import { Button } from '@radix-ui/themes';
 import { Pencil1Icon } from '@radix-ui/react-icons';
 
 const EditIssueButton = ({ issueId }: { issueId: number }) => {
+	const router = useRouter();
+
 	return (
-		<Link href={`/issues/${issueId}/edit`}>
-			<Button>
-				<Pencil1Icon />
-				Edit Issue
-			</Button>
-		</Link>
+		<Button onClick={() => router.push(`/issues/${issueId}/edit`)}>
+			<Pencil1Icon />
+			Edit Issue
+		</Button>
 	);
 };
 

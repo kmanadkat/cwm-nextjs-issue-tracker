@@ -1,8 +1,9 @@
-import { Box, Grid } from '@radix-ui/themes';
+import { Box, Flex, Grid } from '@radix-ui/themes';
 import { notFound } from 'next/navigation';
 import delay from 'delay';
 
 import EditIssueButton from './EditIssueButton';
+import DeleteIssueButton from './DeleteIssueButton';
 import IssueDetails from './IssueDetails';
 import prisma from '@/prisma/client';
 
@@ -24,13 +25,14 @@ const IssueDetailPage = async ({ params }: Props) => {
 	await delay(2000);
 
 	return (
-		<Grid columns={{ initial: '1', md: '2' }} gap='5'>
-			<Box>
+		<Grid columns={{ initial: '1', sm: '5' }} gap='5'>
+			<Box className='md:col-span-4'>
 				<IssueDetails issue={issue} />
 			</Box>
-			<Box>
+			<Flex direction='column' gap='4'>
 				<EditIssueButton issueId={issue.id} />
-			</Box>
+				<DeleteIssueButton issueId={issue.id} />
+			</Flex>
 		</Grid>
 	);
 };
