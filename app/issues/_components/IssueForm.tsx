@@ -8,7 +8,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { createIssueSchema } from '@/app/validationSchemas';
+import { issueSchema } from '@/app/validationSchemas';
 
 import 'easymde/dist/easymde.min.css';
 import ErrorMessage from '@/app/components/ErrorMessage';
@@ -19,7 +19,7 @@ const SimpleMDE = dynamic(() => import('react-simplemde-editor'), {
 	ssr: false,
 });
 
-type IssueFormData = z.infer<typeof createIssueSchema>;
+type IssueFormData = z.infer<typeof issueSchema>;
 
 interface Props {
 	issue?: Issue;
@@ -34,7 +34,7 @@ const IssueForm = ({ issue }: Props) => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<IssueFormData>({
-		resolver: zodResolver(createIssueSchema),
+		resolver: zodResolver(issueSchema),
 	});
 	const [error, setError] = useState('');
 	const [isSubmitting, setIsSubmitting] = useState(false);
