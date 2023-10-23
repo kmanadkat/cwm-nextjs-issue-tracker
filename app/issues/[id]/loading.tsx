@@ -3,9 +3,9 @@ import { Box, Card, Flex, Heading } from '@radix-ui/themes';
 
 const IssueDetailLoadingPage = () => {
 	return (
-		<Box className='max-w-xl'>
+		<Box className='max-w-5xl'>
 			<Heading>
-				<Skeleton />
+				<Skeleton width='12rem' />
 			</Heading>
 			<Flex gap='3' my='3'>
 				<Skeleton width='5rem' />
